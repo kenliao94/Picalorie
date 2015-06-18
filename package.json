@@ -6,6 +6,7 @@
   "dependencies": {
     "angular": "latest",
     "express": "latest",
+    "mongodb": "latest",
     "express3-handlebars": "^0.5.2"
   },
   "scripts": {
@@ -18,6 +19,7 @@
   "keywords": [
     "node.js",
     "angular",
+    "mongodb",
     "watson"
   ],
   "author": "Ken Liao, Steve Zhang",
