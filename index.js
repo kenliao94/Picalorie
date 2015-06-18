@@ -3,21 +3,21 @@ var express = require("express");
 var app = new express();
 app.set('port',3000);
 app.use(express.static(__dirname + '/public')); //declare everything in public folder is static 
-
+app.use('/bower_components',express.static(__dirname + '/bower_components'));
 
 //Setting up handlebars 
 var handlebars = require('express3-handlebars').create({defaultLayout : 'main' });
 app.engine('handlebars', handlebars.engine);
 app.set('view engine' , 'handlebars');
 
-//custom module
-var mod1 = require('./lib/demo.js');
-
 
 //Setup handler for request
 app.get('/',function(req,res){
 	res.render('home');
-	console.log(mod1.hello()); // test custom module 
+});
+
+app.get('/login',function(req,res){
+	res.render('login');
 });
 
 //set custom 404 page 
