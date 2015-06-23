@@ -1,5 +1,6 @@
 //Setting up express app
 var express = require("express");
+var cfenv = require('cfenv');
 var app = new express();
 //Setting up for mongoDB
 var MongoClient = require('mongodb').MongoClient;
@@ -7,7 +8,7 @@ var assert = require('assert');
 var ObjectId = require ('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
 
-app.set('port',3000);
+//app.set('port',3000);
 app.use(express.static(__dirname + '/public')); //declare everything in public folder is static 
 app.use('/bower_components',express.static(__dirname + '/bower_components'));
 
@@ -16,6 +17,8 @@ var handlebars = require('express3-handlebars').create({defaultLayout : 'main' }
 app.engine('handlebars', handlebars.engine);
 app.set('view engine' , 'handlebars');
 
+// get the app environment from Cloud Foundry
+var appEnv = cfenv.getAppEnv();
 
 //Setup handler for request
 app.get('/',function(req,res){
@@ -43,8 +46,8 @@ app.use(function(req, res, next){
 });
 
 //create server
-app.listen(app.get('port'),function(){
-	console.log("The server is opened at port 3000");
+app.listen(appEnv.port,appEnv.bind,function(){
+	console.log("server starting on " + appEnv.url);
 });
 
 
