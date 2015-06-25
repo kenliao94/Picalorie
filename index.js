@@ -55,6 +55,19 @@ app.get('/getname',function(req,res){
   res.render('name', { name : uname , layout : false});
 });
 
+app.get('/login',function(req,res){
+	res.render('login');
+});
+
+// test mongoDB insert
+/*MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to server.");
+  insertDocument(db, function() {
+      db.close();
+  });
+});*/
+
 //set custom 404 page 
 app.use(function(req, res, next){
 	res.type('text/plain');

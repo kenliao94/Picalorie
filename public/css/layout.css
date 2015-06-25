@@ -1,0 +1,49 @@
+body {
+  font-family: sans-serif;
+}
+core-header-panel {
+  background: white;
+  max-height: 15vh;
+}
+#mainheader {
+  background-color: white;
+}
+
+#secondary_header{
+	background: transparent;
+}
+
+#logo{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 310px;
+	height : auto;
+}
+
+#tab1{
+	background:#03A9F4;
+}
+
+#tab2{
+	background:#009688 ;
+}
+
+#tab3{
+	background: #B3E5FC;
+}
+
+#content{
+	padding: 3%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+	width: 80vw;
+	height: 50vh;
+}
+
+.colored{
+	background: #03A9F4;
+	color: white;
+}
