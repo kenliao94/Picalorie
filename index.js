@@ -80,6 +80,7 @@ app.listen(app.get('port'),function(){
 	console.log("The server is opened at port 3000");
 
 // test alchemy API
+// TODO: later change to front end through POST/GET 
 var hardcodeurl = "http://allrecipes.com/Recipe/Honey-Ginger-Grilled-Salmon-2/Detail.aspx?evt19=1&referringHubId=2834";
 console.log('hardcode URL:: %s', hardcodeurl);
 
@@ -89,10 +90,12 @@ alchemy.keywords(hardcodeurl,{},function(err,response,body){
       // throw err;
     }
     // debug for entire response in JASON
-    console.log("Jason Body002:: %j",  response);
+    //console.log("Jason Body002:: %j",  response);
 
+    // kwd is returned jason array for using Alchemy keyword extraction
     var kwd = [];
     kwd = response.keywords;
+    // loop through each JASON object in array kwd
     for (var element in kwd ){
       console.log(element + ": %j" , kwd[element].text);    
     }
