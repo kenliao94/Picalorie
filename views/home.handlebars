@@ -1,13 +1,22 @@
 <paper-shadow id="content" z='3'>
-	<P>Enter your receipt URL:</P>
-	<paper-input label="Ex. www.yourreceipt.com"></paper-input>	
-	<br>
-	<p>Enter your receipt as plain text:</p>
-	<paper-input-decorator layout vertical label="Add 5 teethspoon of suger...">
-		<paper-autogrow-textarea>
-			<textarea aria-label="with autogrowing text area"></textarea>
-		</paper-autogrow-textarea>
-	</paper-input-decorator>
-	<paper-button raised class="colored" role='button'>Submit</paper-button>
+	<div id="home_wrapper">
+		<P>Enter your receipt URL:</P>
+		<paper-input-decorator layout vertical label="Ex. www.yourreceipt.com">
+			<input id="url_rep">
+		</paper-input-decorator>
+		<br>
+		<div style="text-align:center"> 
+			<span style="width:40% ; display:inline-block"><hr id="divider"></span>
+			<span>OR</span>
+			<span style="width:40% ; display:inline-block"><hr id="divider"></span>
+		</div>
+		<p>Enter your receipt as plain text:</p>
+		<paper-input-decorator layout vertical label="Add 5 teethspoon of suger...">
+			<input id="text_rep">
+		</paper-input-decorator>
+		<span id="submit_rep_wrapper">
+			<paper-button raised class="colored" role='button' id="submit_rep">Submit</paper-button>
+		</span>
+	</div>
 </paper-shadow>
 

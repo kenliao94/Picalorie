@@ -1,6 +1,9 @@
 //Setting up express app
 var express = require("express");
 var app = new express();
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));//parse POST request 
+
 //Setting up for mongoDB
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
@@ -10,7 +13,14 @@ var url = 'mongodb://localhost:27017/test';
 //Setting up for AlchemyAPI
 var AlchemyAPI = require('alchemy-api');
 var alchemy = new AlchemyAPI('6957b9d73bee3a6e207ff9fc1ac54091ebd26244');
+//setup Alchemy, false by default
+const use_alchemy = true;
+if(use_alchemy){
+  var request = require('request');  
+}
 
+
+//Set up app
 app.set('port',3000);
 app.use(express.static(__dirname + '/public')); //declare everything in public folder is static 
 app.use('/bower_components',express.static(__dirname + '/bower_components'));
@@ -49,24 +59,34 @@ app.get('/news_feed', function(req,res){
   }
 });
 
-app.get('/getname',function(req,res){
-  var uname = req.param('name');
-  console.log(uname);
-  res.render('name', { name : uname , layout : false});
+//generate a nutrient fact page for the receipt 
+app.post('/get-nutrient-fact',function(req,res){
+  var feed_to_watson = req.body.feed_to_watson;
+  //debug
+  console.log("The data sent when user pressed submit");
+  if(use_alchemy == true){
+      alchemy.keywords(feed_to_watson,{},function(err,response,body){
+        if(err){
+          return console.log(err);
+        }
+        keywords = response.keywords;
+        //debug
+        console.log("Keyword is:");
+        console.log(keywords);
+        request.post("http://kenliao.me:3001/retrieve-nutrient",{ form: { keyword : JSON.stringify(keywords)} },function(err,data){
+          console.log("Result from databsae API is");
+          console.log(data.body);
+          food = JSON.parse(data.body);
+          res.render('nutrient_fact',{list_of_food : food , layout : false});
+        });
+      });
+  }
+  else{
+    var mock_data = [{"name":"apple", "calory":"123", "health":"healthy"},{"name":"orange","calory":"456","health" : "healthy"},{"name":"banana","calory":"789","health":"healthy"}];
+    res.render('nutrient_fact',{ list_of_food : mock_data , layout : false});
+  }
 });
 
-app.get('/login',function(req,res){
-	res.render('login');
-});
-
-// test mongoDB insert
-/*MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server.");
-  insertDocument(db, function() {
-      db.close();
-  });
-});*/
 
 //set custom 404 page 
 app.use(function(req, res, next){
@@ -76,93 +96,19 @@ app.use(function(req, res, next){
 });
 
 //create server
-app.listen(app.get('port'),function(){
-	console.log("The server is opened at port 3000");
-
-// test alchemy API
-// TODO: later change to front end through POST/GET 
-var hardcodeurl = "http://allrecipes.com/Recipe/Honey-Ginger-Grilled-Salmon-2/Detail.aspx?evt19=1&referringHubId=2834";
-console.log('hardcode URL:: %s', hardcodeurl);
-
-alchemy.keywords(hardcodeurl,{},function(err,response,body){
-    if (err){
-	     return console.error(err.stack);
-      // throw err;
-    }
-    // debug for entire response in JASON
-    //console.log("Jason Body002:: %j",  response);
-
-    // kwd is returned jason array for using Alchemy keyword extraction
-    var kwd = [];
-    kwd = response.keywords;
-    // loop through each JASON object in array kwd
-    for (var element in kwd ){
-      console.log(element + ": %j" , kwd[element].text);    
-    }
-
-  })
-
+const bluemix = false; //true if this code is to be deployed on bluemix server, false by default
+if(!bluemix){
+  app.listen(app.get('port'),function(){
+  console.log("The server is opened at port 3000. It is deployed on Ken's server");
 });
-
-
-
-
-
-
-
-
-
-// new delete function for mongoDB
-/*var DeleteDocument = function (db,_collection,_id,callback){
-  db.collection(_collectopn).delete( {
-  // delete item according to _id
-
- }, function(err, result) {
-    assert.equal(err, null);
-    console.log("Deleted a document from the restaurants collection.");
-    callback(result);
-  });
-
 }
-*/
-
-// new insert function for mongoDB
-/*var insertDocument = function(db, callback) {
-   db.collection('restaurants').insert( {
-      "address" : {
-         "street" : "2 Avenue",
-         "zipcode" : "10075",
-         "building" : "1480",
-         "coord" : [ -73.9557413, 40.7720266 ],
-      },
-      "borough" : "Manhattan",
-      "cuisine" : "Italian",
-      "grades" : [
-         {
-            "date" : new Date("2014-10-01T00:00:00Z"),
-            "grade" : "A",
-            "score" : 11
-         },
-         {
-            "date" : new Date("2014-01-16T00:00:00Z"),
-            "grade" : "B",
-            "score" : 17
-         }
-      ],
-      "name" : "Vella",
-      "restaurant_id" : "41704620"
-   }, function(err, result) {
-    assert.equal(err, null);
-    console.log("Inserted a document into the restaurants collection.");
-    callback(result);
+else{
+  var cfenv = require('cfenv');
+  var appEnv = cfenv.getAppEnv();
+  app.listen(appEnv.port,appEnv.bind,function(){
+    console.log("server starting on " + appEnv.url);
   });
-};*/
+}
 
-// test mongoDB insert
-/*MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server.");
-  insertDocument(db, function() {
-      db.close();
-  });
-});*/
+
+

@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-image: url('/img/background.jpg');
 }
 core-header-panel {
   background: white;
@@ -22,15 +23,15 @@ core-header-panel {
 }
 
 #tab1{
-	background:#03A9F4;
+	background:#1E8FB1;
 }
 
 #tab2{
-	background:#009688 ;
+	background:#BCD53C ;
 }
 
 #tab3{
-	background: #B3E5FC;
+	background: #F0C72D;
 }
 
 #content{
@@ -41,9 +42,31 @@ core-header-panel {
 	margin-top: 25px;
 	width: 80vw;
 	height: 50vh;
+	overflow: scroll;
+	border: solid thin Lavender; 
+	border-radius: 6px;
 }
 
 .colored{
 	background: #03A9F4;
+	color: white;
+}
+
+#submit_rep_wrapper{
+	margin-left: 45%;
+	margin-right: auto;
+	margin-top: 20%;
+}
+
+#divider{
+	border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.healthy{
+	background-color: #BCD53C;
+	border: solid white thin;
+	border-radius: 6px;
 	color: white;
 }

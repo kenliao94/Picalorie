@@ -12,11 +12,16 @@
 	<link rel="import" href="bower_components/paper-input/paper-autogrow-textarea.html">
 	<link rel="import" href="bower_components/paper-shadow/paper-shadow.html">
 	<link rel="import" href="bower_components/paper-button/paper-button.html">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/universal.js"></script>
 </head>
 <body fullbleed vertical layout unresolved>
  <core-header-panel flex>
-    <core-toolbar layout horizontal id="mainheader">
-      <paper-icon-button id="navicon" icon="menu"></paper-icon-button>
+    <core-toolbar id="mainheader" layout horizontal>
+    	<paper-icon-button id="navicon" icon="menu"></paper-icon-button>
+		<span style="font-size:smaller;">
+		    Welcome Back, Ken!
+		</span>
     </core-toolbar>
     <core-toolbar id='secondary_header'>
     	<paper-tabs class="bottom fit" selected="0">
@@ -26,6 +31,11 @@
 	  	</paper-tabs>
     </core-toolbar>
   </core-header-panel>
-  {{{body}}}
+  <div id="body_wrapper">
+  	{{{body}}}
+  </div>
+ <div>
+ 	
+ </div>
 </body>
 </html>
