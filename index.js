@@ -41,12 +41,12 @@ app.get('/',function(req,res){
   }
 });
 
-app.get('/receipts',function(req,res){
+app.get('/recipes',function(req,res){
 	if(req.xhr){
-    res.render('receipts', {layout : false});
+    res.render('recipes', {layout : false});
   }
   else{
-    res.render('receipts');
+    res.render('recipes');
   }
 });
 

@@ -66,7 +66,7 @@ $(function(){
 		$("#mainheader").css('background','#BCD53C');
 		$("#secondary_header").css('background','#BCD53C');
 		$.ajax({
-			url : "/receipts",
+			url : "/recipes",
 			type : "get",
 			data : {},
 			success : function(data){
