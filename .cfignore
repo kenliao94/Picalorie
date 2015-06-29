@@ -1,5 +1,6 @@
-API
+node_module
 backup
 bower_components
 mongo_test
-node_modules
+backup
+API
