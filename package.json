@@ -1,0 +1,40 @@
+{
+  "name": "picalory",
+  "version": "1.0.0",
+  "description": "A receipt lover social network",
+  "main": "index.js",
+  "dependencies": {
+    "alchemy-api": "^1.2.0",
+    "angular": "latest",
+    "body-parser": "^1.13.1",
+    "cors": "^2.7.1",
+    "express": "latest",
+    "express3-handlebars": "^0.5.2",
+    "mongodb": "latest",
+    "request": "^2.58.0",
+    "cfenv": "1.0.x"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenliao94/picalory.git"
+  },
+  "keywords": [
+    "node.js",
+    "angular",
+    "mongodb",
+    "watson"
+  ],
+  "author": "Ken Liao, Steve Zhang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenliao94/picalory/issues"
+  },
+  "homepage": "https://github.com/kenliao94/picalory",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
