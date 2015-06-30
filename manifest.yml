@@ -1,0 +1,10 @@
+applications:
+- services:
+  - AlchemyAPI-6h
+  disk_quota: 1024M
+  host: calorycalculator
+  name: CaloryCalculator
+  path: ./CaloryCalculator
+  domain: mybluemix.net
+  instances: 1
+  memory: 512M
