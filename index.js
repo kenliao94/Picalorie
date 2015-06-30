@@ -88,8 +88,17 @@ app.post('/get-nutrient-fact',function(req,res){
 });
 
 // generate mock data for recipes tab
+// TODO replace fruits
 app.post('/get-nutrient-fact-demo',function(req,res){
-  mock_data = [{"name":"apple", "calory":"123", "health":"healthy"},{"name":"orange","calory":"456","health" : "healthy"},{"name":"banana","calory":"789","health":"healthy"}]
+  mock_data = [
+  {"name":"pineapple juice", "calory":"70", "health":"moderate"},
+  {"name":"yellow pepper","calory":"27","health" : "healthy"},
+  {"name":"red pepper","calory":"31","health":"healthy"},
+  {"name":"green pepper","calory":"20","health":"healthy"},
+  {"name":"pineapple chunks","calory":"60","health":"moderate"},
+  {"name":"sirloin steak","calory":"214","health":"avoid"},
+  {"name":"parsley","calory":"36","health":"healthy"}
+  ]
   res.render('nutrient_fact_demo',{list_of_food : mock_data , layout : false});
 });
 
