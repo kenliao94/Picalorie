@@ -2,7 +2,7 @@ $(function(){
 	$("#mainheader").css('background','#1E8FB1');
 	$("#secondary_header").css('background','#1E8FB1');
 
-	$("#submit_rep").on('click',function(event){
+/*	$("#submit_rep").on('click',function(event){
 		console.log('click');
 		var url_rep = $('#url_rep').val();
 		var text_rep = $('#text_rep').val();
@@ -36,7 +36,7 @@ $(function(){
 			});
 		}
 		event.stopPropagation();
-	});
+	});*/
 
 	//load tab1 html
 	$('#tab1').on('click', function(event){
