@@ -1,3 +1,32 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <paper-shadow id="content" z='3'>
-	<h1>Show Recipes</h1>
+	<div id="home_wrapper">
+	  <table class="table">
+	    <tr>
+	    	<td>
+		  Surf N' Turf Kabobs
+		</td>
+		<td>
+		  <paper-button raised id="show_rep" class="colored" role="button">View</paper-button>
+		</td>
+	    </tr>
+	  </table> 
+	</div>
 </paper-shadow>
+<script>
+	$(function(){
+		$('#show_rep').on('click',function(){
+			$.ajax({
+		   	  url : "/get-nutrient-fact-demo",
+			  type : "post",
+			  data : {},
+			  success : function(data){
+			    $('#body_wrapper').fadeOut("fast",function(){
+                               $('#body_wrapper').html(data);
+                               $('#body_wrapper').fadeIn("fast",function(){});
+                            });
+			  }
+			});
+		});
+	});
+</script>

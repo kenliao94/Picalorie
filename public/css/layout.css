@@ -45,6 +45,7 @@ core-header-panel {
 	overflow: auto;
 	border: solid thin Lavender; 
 	border-radius: 6px;
+	background : rgba(255,255,255,0.5);
 }
 
 .colored{

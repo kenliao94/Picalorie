@@ -87,6 +87,11 @@ app.post('/get-nutrient-fact',function(req,res){
   }
 });
 
+// generate mock data for recipes tab
+app.post('/get-nutrient-fact-demo',function(req,res){
+  mock_data = [{"name":"apple", "calory":"123", "health":"healthy"},{"name":"orange","calory":"456","health" : "healthy"},{"name":"banana","calory":"789","health":"healthy"}]
+  res.render('nutrient_fact_demo',{list_of_food : mock_data , layout : false});
+});
 
 //set custom 404 page 
 app.use(function(req, res, next){
