@@ -26,3 +26,8 @@ Provide datasource to Chef Watson and train watson picture recognization service
 3.Click the submit button
 
 We also have a sample recipe in 'Recipes' Tab.
+
+
+###### Calories Reference #######
+
+http://www.caloriecount.com/
