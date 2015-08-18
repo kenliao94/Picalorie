@@ -1,4 +1,4 @@
-# CaloryCalculator
+# CalorieCalculator
 Node.js Webapp deployed on IBM Bluemix via cloud foundry
 
 Bound service: Alchemy keyword extraction  and MongoDB 
